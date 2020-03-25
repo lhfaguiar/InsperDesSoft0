@@ -5,21 +5,30 @@
 ## author: @
 ###############################################
 
+import random
 
 
-fase = 0
-fases = {0: 'ComeOut', 1: 'Point'}
-if (fichas == 0):
-    print('Sair')
+def main():
+    if (fichas == 0):
+        print('Sair')
+        
+    else:
+        print('JOGO')
+        
+        
+        #come out
+        
+        
+        #point
+
+
+def ComeOut():
+    print('comeout')
     
-else:
-    print('JOGO')
-    
-    
-    #come out
-    
-    
-    #point
+
+def point():
+    print('point')
+
     
 def pass_line_bet(soma):
     
@@ -31,7 +40,8 @@ def pass_line_bet(soma):
         
     else:
         print('Point')
-        
+
+       
 def field():
     
     print('field')
