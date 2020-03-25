@@ -1,3 +1,5 @@
+#CrapsInsper
+
 Introdução Neste Exercício-Programa vocês desenvolverão um jogo de Craps, que é um jogo de dados muito popular em cassinos. O jogo consiste em apostar no resultado de um par de dados. As regras apresentadas abaixo são simplificadas e não cobrem todas as possibilidades de um jogo real. As apostas serão sempre de números inteiros positivos de fichas, e o jogador começa com uma quantidade de fichas definida por você. 
  
 Regras Os recursos básicos do jogo é feito por meio de rodadas sucessivas, onde o jogador deve decidir apostar ou sair do jogo, ou automaticamente sair se acabaram as fichas dele. Neste jogo uma rodada pode ter duas fases, começando com uma chamada de “Come Out” e conforme o resultado, passar para a fase de “Point”. O jogador pode fazer várias tipos de apostas conforme a fase. Deixe sempre o jogador informado de que fase ele está (detalhes a seguir). O computador é quem realiza o lançamento de dois dados (6 lados) para o jogo. 
