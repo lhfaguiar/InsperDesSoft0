@@ -2,31 +2,66 @@
 ## Exercicio Programa 1 - Design de Software ##
 ##                                           ##
 ## author: @lhfaguiar                        ##
-## author: @
+## author: @gabriellakz                      ##
 ###############################################
 
 import random
 
 
 def main():
-    if (fichas == 0):
-        print('Sair')
-        
-    else:
-        print('JOGO')
-        
-        
-        #come out
-        
-        
-        #point
+    random.seed()
+    print('Começa o jogo')
+    game = True
+    
+    fichas = 9
+    
+    while game:
+        if (fichas == 0):
+            print('Acabaram as suas fichas. \nSair')
+            
+        else:
+            continuar = 'F'
+            
+            while((continuar != True) and (continuar != False)):
+                print('Para apostar, digite A, para sair, digite S.')
+                continuar = input('Apostar (A) ou sair(S)?')
+                if(continuar=='A'):
+                    continuar = True
+                    continue
+                elif(continuar=='S'):
+                    continuar = False
+                    continue
+                else:
+                    print('Resposta inválida.\nDigite A ou S')
+            
+            
+            
+            if(continuar == True):
+                print('Fase de Come out. \njogo')
+                comeout = come_out()
+                
+                if(comeout == 'point'):
+                    
+                    
+                    point = Point()
+                
+            else: 
+                print('sair')
+                
+            game = False
+            
+            
+            #come out
+            
+            
+            #point
 
 
-def ComeOut():
+def come_out():
     print('comeout')
     
 
-def point():
+def Point():
     print('point')
 
     
@@ -55,3 +90,13 @@ def any_craps():
 def twelve():
     
     print('twelve')
+    
+def lancamento_dados():
+    random.seed()
+    
+    dado0 = random.randrange(1, 7, 1)
+    dado1 = random.randrange(1, 7, 1)
+    
+    return dado0, dado1
+
+main()
