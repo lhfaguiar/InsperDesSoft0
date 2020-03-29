@@ -13,17 +13,18 @@ def main():
     game = ''
     
     while((game!=True) and (game!=False)):
-        game = str(input('Vamos jogar craps? Digite S para sim e N para não:'))
+        game = str(input('Vamos jogar craps? Digite S para sim e N para não: '))
         if (game=='S'):
             game = True
             continue
         elif(game=='N'):
             print('Até logo.')
             game = False
+            return False
         else:
             print('Entrada inválida. Digite S para sim e N para não.')
  
-    fichas = int(input('Quanto você quer apostar? Digite um número válido'))
+    fichas = int(input('Quanto você quer apostar? Digite um número válido. '))
     
     if(fichas > 0):
         print('Você está começando com {} fichas.'.format(fichas))
@@ -40,7 +41,7 @@ def main():
             continuar = ''
             while((continuar != True) and (continuar != False)):
                 print('Para apostar, digite A, para sair, digite S.')
-                continuar = str(input('Apostar (A) ou sair(S)?'))
+                continuar = str(input('Apostar (A) ou sair(S)? '))
     
                 if(continuar=='A'):
                     continuar = True
@@ -56,12 +57,14 @@ def main():
                 dado0, dado1 = lancamento_dados()
                 soma = dado0 + dado1
                 
-                comeout = ComeOut(soma)
+                comeout = ComeOut(soma, fichas)
                 
-                # if(comeout == 'point'):
+                if(comeout == 'point'):
+                    point = Point(aposta)
                     
+                else:
+                    fichas = fichas + comeout
                     
-                #     point = Point()
                 
             else: 
                 print('sair')
@@ -75,13 +78,13 @@ def main():
             #point
     main()
 
-def ComeOut(soma):
-    escolha = int(input('O que você deseja fazer? Digite o número correspondente. \n1) Pass Line Bet \n2) Field \n3) Any Craps \n4) Twelve \n5) Saldo \n6) Sair do Jogo'))
+def ComeOut(soma, fichas):
+    escolha = int(input('O que você deseja fazer? Digite o número correspondente. \n1) Pass Line Bet \n2) Field \n3) Any Craps \n4) Twelve \n5) Saldo \n6) Sair do Jogo \nValor: '))
     
     if(escolha == 1):
         print('Pass Line Bet')
 
-        aposta = int(input('Quanto você quer apostar?'))
+        aposta = int(input('Quanto você quer apostar? '))
         
         if(aposta>0):
             if(aposta>=fichas):
@@ -94,7 +97,25 @@ def ComeOut(soma):
             print('Você precisa apostar mais que zero')
         else:
             print('Valor inválido')
-    
+            
+    elif(escolha == 2):
+        print('2')
+        
+    elif(escolha == 3):
+        print('3')
+        
+    elif(escolha==4):
+        print('4')
+
+    elif(escolha == 5):
+        print('5')
+        
+    elif(escolha==6):
+        print('Saindo')
+        
+    else:
+        print('Valor inválido.')
+
 
 def Point():
     print('point')
@@ -111,8 +132,8 @@ def pass_line_bet(soma, aposta):
         aposta = 0
         
     else:
-        print('Fase Point')
-        return 'point'
+        point = Point(aposta)
+        return point
     
     return aposta
 
