@@ -60,7 +60,7 @@ def main():
                 comeout = ComeOut(soma, fichas)
                 
                 if(comeout == 'point'):
-                    point = Point(aposta)
+                    point = Point(soma)
                     
                 else:
                     fichas = fichas + comeout
@@ -99,9 +99,13 @@ def ComeOut(soma, fichas):
             print('Valor inválido')
             
     elif(escolha == 2):
+        print('Field')
+        field = field()
         print('2')
         
     elif(escolha == 3):
+        print('Any Craps')
+        anycraps = any_craps()
         print('3')
         
     elif(escolha==4):
@@ -117,8 +121,24 @@ def ComeOut(soma, fichas):
         print('Valor inválido.')
 
 
-def Point():
-    print('point')
+def Point(soma):
+    
+    passa_point = True
+    
+    while passa_point:
+        novo_lancamento = lancamento_dados()
+        
+        if(novo_lancamento == 7):
+            aposta=0
+            print('Perdeu tudo no point com soma 7.')
+            passa_point = False
+            return aposta
+            
+        elif(novo_lancamento == soma):
+            print('venceu')
+            passa_point = False
+            aposta = aposta*2
+            return aposta
 
     
 def pass_line_bet(soma, aposta):
