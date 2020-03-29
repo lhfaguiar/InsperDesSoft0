@@ -121,7 +121,7 @@ def ComeOut(soma, fichas):
         print('Valor inválido.')
 
 
-def Point(soma):
+def Point(soma, fichas):
     
     passa_point = True
     
@@ -132,12 +132,17 @@ def Point(soma):
             aposta=0
             print('Perdeu tudo no point com soma 7.')
             passa_point = False
+            fichas = fichas - aposta
+            
+            comeout = ComeOut(novo_lancamento, aposta)
             return aposta
             
         elif(novo_lancamento == soma):
             print('venceu')
             passa_point = False
-            aposta = aposta*2
+            fichas = fichas + aposta
+            
+            comeout = ComeOut(novo_lancamento, aposta)
             return aposta
 
     
@@ -163,14 +168,35 @@ def field():
     print('field')
 
 
-def any_craps():
+def any_craps(aposta):
+    print('Any Craps')
+    soma = lancamento_dados()
     
-    print('any_craps')
+    if((soma==2) or (soma==3) or (soma==12)):
+        print('Você ganhou any craps!!!')
+        fichas = fichas + 7*aposta
+        return fichas
+    
+    else:
+        print('Você perdeu Any Craps')
+        fichas = fichas - aposta
+        return fichas
     
 
 def twelve():
+    print('Twelve')
+    soma = lancamento_dados()
     
-    print('twelve')
+    if(soma==12):
+        print('Você ganhou Twelve!!!')
+        fichas = fichas + 30*aposta
+        return fichas
+    
+    else:
+        print('Você perdeu Twelve.')
+        fichas = fichas - aposta
+        return fichas
+    
     
 def lancamento_dados():
     random.seed()
