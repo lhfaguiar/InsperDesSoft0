@@ -80,7 +80,7 @@ def main():
 
 def ComeOut(soma, fichas):
     #implementacao das regras do come out
-    jogo=True
+    jogo = True
     while(jogo):
         escolha = int(input('O que você deseja fazer? Digite o número\
              correspondente. \n1) Pass Line Bet \n2) Field \n3) Any Craps\
@@ -92,8 +92,8 @@ def ComeOut(soma, fichas):
             
             while not(valido):
                 aposta = int(input('Quanto você quer apostar? '))
-                if(aposta>0):
-                    if(aposta>=fichas):
+                if(aposta > 0):
+                    if(aposta >= fichas):
                         PassLineBet = pass_line_bet(soma, aposta)
                         valido = True
                         return PassLineBet
@@ -170,10 +170,28 @@ def pass_line_bet(soma, aposta):
     return aposta
 
        
-def field():
+def field(aposta, fichas):
     #implementacao field
+    print('Field')
+    soma = lancamento_dados()
     
-    print('field')
+    if ((soma ==  3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
+        print ('Você ganhou Field!')
+        fichas = fichas + aposta
+        return fichas
+    elif (soma == 2):
+        print ('Você ganhou Field em dobro!!')
+        fichas = fichas + 2*aposta
+        return fichas
+    elis (soma == 12):
+        print ('Você ganhou Field em triplo!!!')
+        fichas = fichas + 3*aposta
+        return fichas
+    else:
+        print ('Você perdeu Field')
+        fichas = fichas - aposta
+        return fichas
+    
 
 
 def any_craps(aposta, fichas):
