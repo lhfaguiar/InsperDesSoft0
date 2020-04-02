@@ -61,8 +61,7 @@ def main():
                 #Comeca o jogo no come out
                 print('Fase de Come out.')
                 #sorteio dos dados
-                dado0, dado1 = lancamento_dados()
-                soma = dado0 + dado1
+                soma = lancamento_dados()
                 
                 comeout = ComeOut(soma, fichas)
                 
@@ -231,7 +230,8 @@ def lancamento_dados():
     random.seed()
     dado0 = random.randrange(1, 7, 1)
     dado1 = random.randrange(1, 7, 1)
-    return dado0, dado1
+    soma = dado0 + dado1
+    return soma
 
 
 main()
