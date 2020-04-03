@@ -27,7 +27,7 @@ def main():
             #Verifica se entrada valida
             print('Entrada inválida. Digite S para sim e N para não.')
  
-    fichas = int(input('Quanto você quer apostar? Digite um número válido. '))
+    fichas = int(input('Com quanto você quer começar? Digite um número válido. '))
     #com quantas fichas comecamos?
     
     if(fichas > 0):
@@ -81,8 +81,7 @@ def ComeOut(soma, fichas):
     #implementacao das regras do come out
     jogo = True
     while(jogo):
-        escolha = int(input('O que você deseja fazer? Digite o número\
-             correspondente. \n1) Pass Line Bet \n2) Field \n3) Any Craps\
+        escolha = int(input('O que você deseja fazer? Digite o número correspondente. \n1) Pass Line Bet \n2) Field \n3) Any Craps\
                   \n4) Twelve \n5) Saldo \n6) Sair do Jogo \nValor: '))
         
         if(escolha == 1):
@@ -173,7 +172,7 @@ def field(aposta, fichas):
     print('Field')
     soma = lancamento_dados()
     
-    if (soma ==  3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
+    if (soma == 3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11) :
         print ('Você ganhou Field!')
         fichas = fichas + aposta
         return fichas
@@ -181,7 +180,7 @@ def field(aposta, fichas):
         print ('Você ganhou Field em dobro!!')
         fichas = fichas + 2*aposta
         return fichas
-    elis (soma == 12):
+    elif (soma == 12) :
         print ('Você ganhou Field em triplo!!!')
         fichas = fichas + 3*aposta
         return fichas
