@@ -2,7 +2,9 @@
 ## Exercicio Programa 1 - Design de Software ##
 ##                                           ##
 ## author: @lhfaguiar                        ##
+## Lais Harumi Fukujima Aguiar               ##
 ## author: @gabriellakz                      ##
+## Gabriella Kowarick Zullo                  ##
 ###############################################
 
 import random
@@ -66,13 +68,14 @@ def main():
                 comeout = ComeOut(soma, fichas)
                 
                 if(comeout == 'point'):
-                    point = Point(soma)
+                    point = Point(soma, fichas, aposta)
                     
                 else:
                     fichas = fichas + comeout
             else: 
                 print('Saindo')
-                
+                return False
+            
             game = False
 
     main()
@@ -90,11 +93,13 @@ def ComeOut(soma, fichas):
             
             while not(valido):
                 aposta = int(input('Quanto você quer apostar? '))
-                if(aposta > 0):
-                    if(aposta >= fichas):
-                        PassLineBet = pass_line_bet(soma, aposta)
+                
+                if(aposta > 0):                    
+                    if(int(aposta) <= int(fichas)):
+                        fichas = pass_line_bet(soma, aposta, fichas)
+
                         valido = True
-                        return PassLineBet
+                        
                     else:
                         print('Saldo insuficiente.')
                         
@@ -105,72 +110,103 @@ def ComeOut(soma, fichas):
                 
         elif(escolha == 2):
             print('Field')
-            field = field(aposta, fichas)
+            aposta = int(input('Quanto você quer apostar? '))
+                
+            if(aposta > 0):
+                fichas = field(aposta, fichas)
+            
+            elif(aposta == 0):
+                    print('Você precisa apostar mais que zero')
+                    
+            else:
+                print('Valor inválido')
+            
             
         elif(escolha == 3):
             print('Any Craps')
-            anycraps = any_craps(aposta, fichas)
+            aposta = int(input('Quanto você quer apostar? '))
+                
+            if(aposta > 0):
+                fichas = field(aposta, fichas)
+            
+            elif(aposta == 0):
+                    print('Você precisa apostar mais que zero')
+                    
+            else:
+                print('Valor inválido')
+            fichas = any_craps(aposta, fichas)
             
         elif(escolha==4):
             print('Twelve')
-            twelve = twelve(aposta, fichas)
+            aposta = int(input('Quanto você quer apostar? '))
+                
+            if(aposta > 0):
+                fichas = field(aposta, fichas)
+            
+            elif(aposta == 0):
+                    print('Você precisa apostar mais que zero')
+                    
+            else:
+                print('Valor inválido')
+            fichas = twelve(aposta, fichas)
 
         elif(escolha == 5):
             print('Seu saldo é {} fichas.'.format(fichas))
             
         elif(escolha==6):
             print('Saindo')
+            return False
             
         else:
             print('Valor inválido.')
 
 
-    def Point(soma, fichas):
-        #regras do point
-        passa_point = True
+def Point(soma, fichas, aposta):
+    #regras do point
+    passa_point = True
+    
+    while passa_point:
+        novo_lancamento = lancamento_dados()
         
-        while passa_point:
-            novo_lancamento = lancamento_dados()
+        if(novo_lancamento == 7):
+            print('Perdeu tudo no point com soma 7.')
+            passa_point = False
+            fichas = fichas - aposta
+            # comeout = ComeOut(novo_lancamento, aposta)
+            return fichas
             
-            if(novo_lancamento == 7):
-                aposta=0
-                print('Perdeu tudo no point com soma 7.')
-                passa_point = False
-                fichas = fichas - aposta
-                
-                comeout = ComeOut(novo_lancamento, aposta)
-                return aposta
-                
-            elif(novo_lancamento == soma):
-                print('venceu')
-                passa_point = False
-                fichas = fichas + aposta
-                
-                comeout = ComeOut(novo_lancamento, aposta)
-                return aposta
+        elif(novo_lancamento == soma):
+            print('venceu')
+            passa_point = False
+            fichas = fichas + aposta
+            
+            # comeout = ComeOut(novo_lancamento, aposta)
+            return fichas
 
     
-def pass_line_bet(soma, aposta):
+def pass_line_bet(soma, aposta, fichas):
     #implementacao pass line
     if (soma==7) or (soma==11):
         print('Venceu Pass Line Bet com soma {}'.format(soma))
-        aposta = aposta*2
+        fichas = fichas + aposta*2
+        return fichas
         
     elif (soma==2) or (soma==3) or (soma==12):
         print('Perdeu com Pass Line Bet com soma {}'.format(soma))
-        aposta = 0
+        fichas = fichas - aposta
+        return fichas
         
     else:
-        point = Point(aposta)
-        return point
-    
-    return aposta
+        fichas = Point(soma, fichas, aposta)
+        return fichas
+
 
        
 def field(aposta, fichas):
     #implementacao field
     print('Field')
     soma = lancamento_dados()
+    print(soma)
     
     if (soma == 3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11) :
         print ('Você ganhou Field!')
