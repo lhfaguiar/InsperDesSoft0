@@ -106,8 +106,7 @@ def ComeOut(soma, fichas):
                 
         elif(escolha == 2):
             print('Field')
-            field = field()
-            print('2')
+            field = field(aposta, fichas)
             
         elif(escolha == 3):
             print('Any Craps')
@@ -174,7 +173,7 @@ def field(aposta, fichas):
     print('Field')
     soma = lancamento_dados()
     
-    if ((soma ==  3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
+    if (soma ==  3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
         print ('Você ganhou Field!')
         fichas = fichas + aposta
         return fichas
